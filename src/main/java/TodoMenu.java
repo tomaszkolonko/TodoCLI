@@ -25,9 +25,7 @@ public class TodoMenu {
                     todoHolder.add(item);
                     break;
                 case "L":
-                    for (String currentItem : todoHolder.getTodos()) {
-                        System.out.println(currentItem);
-                    }
+                    todoHolder.print();
                     break;
                 case "Q":
                     System.out.println("Goodbye");

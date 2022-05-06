@@ -17,11 +17,9 @@ public class TodoHolder {
 
     // mark items
 
-    // print
-
-    List<String> getTodos() {
-        return todos;
+    void print() {
+        for(String todo : todos) {
+            System.out.println(todo);
+        }
     }
-
-
 }
