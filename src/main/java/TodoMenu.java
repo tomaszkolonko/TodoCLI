@@ -11,26 +11,27 @@ public class TodoMenu {
         System.out.println("Welcome");
 
         while (active) {
-            System.out.println("Press 'A' to add todo items");
-            System.out.println("Press 'L' to list todo items");
-            System.out.println("Press 'Q' to quit");
+            String menuOptions = """
+                    Press 'A' to add todo items
+                    Press 'L' to list todo items
+                    Press 'Q' to quit
+                    """;
+            System.out.println(menuOptions);
 
             Scanner scanner = new Scanner(System.in);
             String option = scanner.nextLine();
 
             switch (option.toUpperCase()) {
-                case "A":
+                case "A" -> {
                     System.out.println("Enter an item");
                     String item = scanner.nextLine();
                     todoHolder.add(item);
-                    break;
-                case "L":
-                    todoHolder.print();
-                    break;
-                case "Q":
+                }
+                case "L" -> todoHolder.print();
+                case "Q" -> {
                     System.out.println("Goodbye");
                     active = false;
-                    break;
+                }
             }
 
         }
