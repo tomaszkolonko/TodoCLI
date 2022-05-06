@@ -12,11 +12,11 @@ class TodoHolderTest {
     void testAddingItem() {
         TodoHolder todoHolder = new TodoHolder();
         todoHolder.add(ITEM_ONE);
-        assertEquals(1, todoHolder.getTodos().size());
+        assertEquals(1, todoHolder.getTodoSize());
         todoHolder.add(ITEM_TWO);
-        assertEquals(2, todoHolder.getTodos().size());
+        assertEquals(2, todoHolder.getTodoSize());
         todoHolder.add(ITEM_THREE);
-        assertEquals(3, todoHolder.getTodos().size());
+        assertEquals(3, todoHolder.getTodoSize());
 
     }
 

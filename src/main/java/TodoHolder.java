@@ -22,4 +22,8 @@ public class TodoHolder {
             System.out.println(todo);
         }
     }
+
+    public int getTodoSize() {
+        return todos.size();
+    }
 }
