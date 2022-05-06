@@ -10,14 +10,22 @@ public class TodoItem {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TodoItem todoItem = (TodoItem) o;
-        return Objects.equals(item, todoItem.item);
+        return this == o || o instanceof TodoItem && this.equals((TodoItem) o);
+    }
+
+    private boolean equals(TodoItem other) {
+        return Objects.equals(this.item, other.item);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(item);
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItem{" +
+                "item='" + item + '\'' +
+                '}';
     }
 }
