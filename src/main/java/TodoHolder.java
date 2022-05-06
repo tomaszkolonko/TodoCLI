@@ -9,9 +9,13 @@ public class TodoHolder {
         todos.add(item);
     }
 
-    // delete
+    void delete(String item) {
+        todos.remove(item);
+    }
 
-    // clearTodos
+    void clearTodos() {
+        todos.clear();
+    }
 
     // edit
 
