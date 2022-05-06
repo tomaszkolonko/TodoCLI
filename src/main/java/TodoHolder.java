@@ -3,13 +3,13 @@ import java.util.List;
 
 public class TodoHolder {
 
-    private final List<String> todos = new ArrayList<>();
+    private final List<TodoItem> todos = new ArrayList<>();
 
-    void add(String item) {
+    void add(TodoItem item) {
         todos.add(item);
     }
 
-    void delete(String item) {
+    void delete(TodoItem item) {
         todos.remove(item);
     }
 
@@ -22,7 +22,7 @@ public class TodoHolder {
     // mark items
 
     void print() {
-        for(String todo : todos) {
+        for(TodoItem todo : todos) {
             System.out.println(todo);
         }
     }

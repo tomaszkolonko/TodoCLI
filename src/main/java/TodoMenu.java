@@ -13,6 +13,7 @@ public class TodoMenu {
         while (active) {
             String menuOptions = """
                     Press 'A' to add todo items
+                    Press 'D' to delete an item
                     Press 'L' to list todo items
                     Press 'Q' to quit
                     """;
@@ -24,8 +25,13 @@ public class TodoMenu {
             switch (option.toUpperCase()) {
                 case "A" -> {
                     System.out.println("Enter an item");
-                    String item = scanner.nextLine();
+                    TodoItem item = new TodoItem(scanner.nextLine());
                     todoHolder.add(item);
+                }
+                case "D" -> {
+                    System.out.println("Enter an item to be deleted");
+                    TodoItem item = new TodoItem(scanner.nextLine());
+                    todoHolder.delete(item);
                 }
                 case "L" -> todoHolder.print();
                 case "Q" -> {

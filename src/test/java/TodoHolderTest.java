@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TodoHolderTest {
 
-    private final static String ITEM_ONE = "Call Peter";
-    private final static String ITEM_TWO = "Buy some fruits";
-    private final static String ITEM_THREE = "Pay the bills";
+    private final static TodoItem ITEM_ONE = new TodoItem("Call Peter");
+    private final static TodoItem ITEM_TWO = new TodoItem("Buy some fruits");
+    private final static TodoItem ITEM_TWO_EQUAL = new TodoItem("Buy some fruits");
+    private final static TodoItem ITEM_THREE = new TodoItem("Pay the bills");
+
 
     private final static TodoHolder todoHolder = new TodoHolder();
 
@@ -32,8 +34,14 @@ class TodoHolderTest {
     }
 
     @Test
-    void testRemovingItems() {
+    void testRemovingItemsWithSameReference() {
         todoHolder.delete(ITEM_ONE);
+        assertEquals(1, todoHolder.getTodoSize());
+    }
+
+    @Test
+    void testRemovingEqualItem() {
+        todoHolder.delete(ITEM_TWO_EQUAL);
         assertEquals(1, todoHolder.getTodoSize());
     }
 
