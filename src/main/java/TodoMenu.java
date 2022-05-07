@@ -3,23 +3,23 @@ import java.util.Scanner;
 public class TodoMenu {
 
     public void start() {
-
-        TodoHolder todoHolder = new TodoHolder();
-
-        System.out.println("Welcome");
-
-        String chosenOption = "";
-        while (!chosenOption.equals("Q")) {
-            String menuOptions = """
+        String menuOptions = """
                     Press 'A' to add todo items
                     Press 'D' to delete an item
                     Press 'X' to check an item
                     Press 'U' to uncheck todo item
                     Press 'L' to list todo items
+                    Press 'H' to list all the options
                     Press 'Q' to quit
                     """;
-            System.out.println(menuOptions);
 
+        TodoHolder todoHolder = new TodoHolder();
+
+        System.out.println("Welcome");
+        System.out.println(menuOptions);
+
+        String chosenOption = "";
+        while (!chosenOption.equals("Q")) {
             Scanner scanner = new Scanner(System.in);
             String option = scanner.nextLine();
 
@@ -45,11 +45,14 @@ public class TodoMenu {
                     todoHolder.uncheckItem(item);
                 }
                 case "L" -> todoHolder.print();
+                case "H" -> System.out.println(menuOptions);
                 case "Q" -> {
                     System.out.println("Goodbye");
                     chosenOption = "Q";
                 }
+                default -> System.out.println("didn't get that... Press 'H' to list all the options");
             }
+            System.out.println("What's next?");
 
         }
     }

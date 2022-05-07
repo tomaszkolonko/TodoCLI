@@ -6,7 +6,6 @@ public class TodoItem {
     private boolean marked;
 
     public TodoItem(String item) {
-
         this.item = item;
         this.marked = false;
     }
