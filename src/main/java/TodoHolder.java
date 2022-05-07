@@ -17,6 +17,16 @@ public class TodoHolder {
         todos.clear();
     }
 
+    TodoItem retrieveItem(String todo) {
+        for(TodoItem todoItem : todos) {
+            if(todoItem.equals(new TodoItem(todo))) {
+                return todoItem;
+            }
+        }
+        // work with null objects
+        return null;
+    }
+
     // edit
 
     // mark items

@@ -8,7 +8,7 @@ class TodoHolderTest {
 
     private final static TodoItem ITEM_ONE = new TodoItem("Call Peter");
     private final static TodoItem ITEM_TWO = new TodoItem("Buy some fruits");
-    private final static TodoItem ITEM_TWO_EQUAL = new TodoItem("Buy some fruits");
+    private final static TodoItem ITEM_TWO_EQUAL_CONTENT = new TodoItem("Buy some fruits");
     private final static TodoItem ITEM_THREE = new TodoItem("Pay the bills");
 
 
@@ -30,6 +30,9 @@ class TodoHolderTest {
         assertEquals(2, todoHolder.getTodoSize());
         todoHolder.add(ITEM_THREE);
         assertEquals(3, todoHolder.getTodoSize());
+        todoHolder.add(null);
+        assertEquals(4, todoHolder.getTodoSize());
+
 
     }
 
@@ -37,12 +40,16 @@ class TodoHolderTest {
     void testRemovingItemsWithSameReference() {
         todoHolder.delete(ITEM_ONE);
         assertEquals(1, todoHolder.getTodoSize());
+
+        todoHolder.delete(ITEM_TWO_EQUAL_CONTENT);
+        assertEquals(0, todoHolder.getTodoSize());
+
     }
 
     @Test
-    void testRemovingEqualItem() {
-        todoHolder.delete(ITEM_TWO_EQUAL);
-        assertEquals(1, todoHolder.getTodoSize());
+    void testRetrievingAnItem() {
+        TodoItem todoItem = todoHolder.retrieveItem("Call Peter");
+        assertEquals(new TodoItem("Call Peter"), todoItem);
     }
 
 
