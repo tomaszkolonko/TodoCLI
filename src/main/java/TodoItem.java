@@ -3,11 +3,15 @@ import java.util.Objects;
 public class TodoItem {
 
     private final String item;
-    private boolean marked;
+    private boolean marked = false;
 
     public TodoItem(String item) {
         this.item = item;
-        this.marked = false;
+    }
+
+    public TodoItem(String item, boolean marked) {
+        this(item);
+        this.marked = marked;
     }
 
     @Override

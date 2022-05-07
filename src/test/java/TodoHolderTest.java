@@ -48,8 +48,8 @@ class TodoHolderTest {
 
     @Test
     void testRetrievingAnItem() {
-        TodoItem todoItem = todoHolder.retrieveItem("Call Peter");
-        assertEquals(new TodoItem("Call Peter"), todoItem);
+        TodoItem todoItem = todoHolder.retrieveItem("Buy some fruits");
+        assertEquals(new TodoItem("Buy some fruits"), todoItem);
     }
 
     @Test
@@ -61,7 +61,11 @@ class TodoHolderTest {
         assertEquals(true, todoHolder.retrieveItem("Call Peter").isChecked());
         todoHolder.uncheckItem(itemOneEqual);
         assertEquals(false, todoHolder.retrieveItem("Call Peter").isChecked());
+    }
 
+    @Test
+    void editItems() {
+        // difficult to test (!!!)
     }
 
 

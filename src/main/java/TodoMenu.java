@@ -8,6 +8,7 @@ public class TodoMenu {
                     Press 'D' to delete an item
                     Press 'X' to check an item
                     Press 'U' to uncheck todo item
+                    Press 'E' to edit an item
                     Press 'L' to list todo items
                     Press 'H' to list all the options
                     Press 'Q' to quit
@@ -40,9 +41,14 @@ public class TodoMenu {
                     todoHolder.checkItem(item);
                 }
                 case "U" -> {
-                    System.out.println("Enter the item you want to UNcheck");
+                    System.out.println("Enter the item you want to uncheck");
                     TodoItem item = new TodoItem(scanner.nextLine());
                     todoHolder.uncheckItem(item);
+                }
+                case "E" -> {
+                    System.out.println("Enter the item you want to edit");
+                    TodoItem item = new TodoItem(scanner.nextLine());
+                    todoHolder.editItem(item);
                 }
                 case "L" -> todoHolder.print();
                 case "H" -> System.out.println(menuOptions);

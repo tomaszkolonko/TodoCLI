@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TodoHolder {
 
@@ -27,14 +28,35 @@ public class TodoHolder {
         return null;
     }
 
-    // edit
-
-    void checkItem(TodoItem item) {
-        for(TodoItem todoItem : todos) {
+    void editItem(TodoItem item) {
+        for(int i = 0; i < todos.size(); i++) {
+            TodoItem todoItem = todos.get(i);
             if(todoItem.equals(item)) {
-                todoItem.check();
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Item was retrieved. What's the text?");
+                String text = scanner.nextLine();
+                System.out.println("is it a checked item? [yes|no]");
+                String isChecked = scanner.nextLine().toLowerCase();
+                todos.remove(i);
+                todos.add(i, new TodoItem(text, isChecked.equals("yes")));
             }
         }
+    }
+
+    void checkItem(TodoItem item) {
+        TodoItem itemToBeChecked = todos.stream()
+                .filter(item::equals)
+                .findAny()
+                .orElse(null);
+
+        if(itemToBeChecked != null) {
+            itemToBeChecked.check();
+        }
+//        for(TodoItem todoItem : todos) {
+//            if(todoItem.equals(item)) {
+//                todoItem.check();
+//            }
+//        }
     }
 
     void uncheckItem(TodoItem item) {
