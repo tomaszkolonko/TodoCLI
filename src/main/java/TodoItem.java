@@ -3,9 +3,12 @@ import java.util.Objects;
 public class TodoItem {
 
     private final String item;
+    private boolean marked;
 
     public TodoItem(String item) {
+
         this.item = item;
+        this.marked = false;
     }
 
     @Override
@@ -24,8 +27,18 @@ public class TodoItem {
 
     @Override
     public String toString() {
-        return "TodoItem{" +
-                "item='" + item + '\'' +
-                '}';
+        return "[" + (marked ? "x" : " ") + "]  " + item;
+    }
+
+    public void check() {
+        this.marked = true;
+    }
+
+    public void uncheck() {
+        this.marked = false;
+    }
+
+    public boolean isChecked() {
+        return this.marked;
     }
 }

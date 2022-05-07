@@ -6,14 +6,15 @@ public class TodoMenu {
 
         TodoHolder todoHolder = new TodoHolder();
 
-        boolean active = true;
-
         System.out.println("Welcome");
 
-        while (active) {
+        String chosenOption = "";
+        while (!chosenOption.equals("Q")) {
             String menuOptions = """
                     Press 'A' to add todo items
                     Press 'D' to delete an item
+                    Press 'X' to check an item
+                    Press 'U' to uncheck todo item
                     Press 'L' to list todo items
                     Press 'Q' to quit
                     """;
@@ -33,10 +34,20 @@ public class TodoMenu {
                     TodoItem item = new TodoItem(scanner.nextLine());
                     todoHolder.delete(item);
                 }
+                case "X" -> {
+                    System.out.println("Enter the item you want to check");
+                    TodoItem item = new TodoItem(scanner.nextLine());
+                    todoHolder.checkItem(item);
+                }
+                case "U" -> {
+                    System.out.println("Enter the item you want to UNcheck");
+                    TodoItem item = new TodoItem(scanner.nextLine());
+                    todoHolder.uncheckItem(item);
+                }
                 case "L" -> todoHolder.print();
                 case "Q" -> {
                     System.out.println("Goodbye");
-                    active = false;
+                    chosenOption = "Q";
                 }
             }
 

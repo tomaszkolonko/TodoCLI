@@ -29,7 +29,21 @@ public class TodoHolder {
 
     // edit
 
-    // mark items
+    void checkItem(TodoItem item) {
+        for(TodoItem todoItem : todos) {
+            if(todoItem.equals(item)) {
+                todoItem.check();
+            }
+        }
+    }
+
+    void uncheckItem(TodoItem item) {
+        for(TodoItem todoItem : todos) {
+            if(todoItem.equals(item)) {
+                todoItem.uncheck();
+            }
+        }
+    }
 
     void print() {
         for(TodoItem todo : todos) {
