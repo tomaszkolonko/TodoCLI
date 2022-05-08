@@ -14,25 +14,6 @@ public class TodoItem {
         this.marked = marked;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return this == o || o instanceof TodoItem && this.equals((TodoItem) o);
-    }
-
-    private boolean equals(TodoItem other) {
-        return Objects.equals(this.item, other.item);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(item);
-    }
-
-    @Override
-    public String toString() {
-        return "[" + (marked ? "x" : " ") + "]  " + item;
-    }
-
     public void check() {
         this.marked = true;
     }
@@ -43,5 +24,24 @@ public class TodoItem {
 
     public boolean isChecked() {
         return this.marked;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o || o instanceof TodoItem && this.equals((TodoItem) o);
+    }
+
+    private boolean equals(TodoItem other) {
+        return this.item.equals(other.item);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(item);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + (marked ? "x" : " ") + "]  " + item;
     }
 }

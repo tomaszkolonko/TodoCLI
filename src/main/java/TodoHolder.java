@@ -19,8 +19,10 @@ public class TodoHolder {
     }
 
     TodoItem retrieveItem(String todo) {
+        TodoItem item = new TodoItem(todo);
+
         for(TodoItem todoItem : todos) {
-            if(todoItem.equals(new TodoItem(todo))) {
+            if(todoItem.equals(item)) {
                 return todoItem;
             }
         }
@@ -37,26 +39,16 @@ public class TodoHolder {
                 String text = scanner.nextLine();
                 System.out.println("is it a checked item? [yes|no]");
                 String isChecked = scanner.nextLine().toLowerCase();
-                todos.remove(i);
-                todos.add(i, new TodoItem(text, isChecked.equals("yes")));
+                todos.set(i, new TodoItem(text, isChecked.equals("yes")));
             }
         }
     }
 
     void checkItem(TodoItem item) {
-        TodoItem itemToBeChecked = todos.stream()
+        todos.stream()
                 .filter(item::equals)
                 .findAny()
-                .orElse(null);
-
-        if(itemToBeChecked != null) {
-            itemToBeChecked.check();
-        }
-//        for(TodoItem todoItem : todos) {
-//            if(todoItem.equals(item)) {
-//                todoItem.check();
-//            }
-//        }
+                .ifPresent(itemToCheck -> itemToCheck.check());
     }
 
     void uncheckItem(TodoItem item) {
