@@ -10,6 +10,8 @@ public class TodoMenu {
                     Press 'U' to uncheck todo item
                     Press 'E' to edit an item
                     Press 'L' to list todo items
+                    Press 'Lx' to list only checked items
+                    Press 'Lu' to list only unchecked items
                     Press 'H' to list all the options
                     Press 'Q' to quit
                     """;
@@ -51,6 +53,8 @@ public class TodoMenu {
                     todoHolder.editItem(item);
                 }
                 case "L" -> todoHolder.print();
+                case "LX" -> todoHolder.printOnlyCheckedItems();
+                case "LU" -> todoHolder.printOnlyUncheckedItems();
                 case "H" -> System.out.println(menuOptions);
                 case "Q" -> {
                     System.out.println("Goodbye");

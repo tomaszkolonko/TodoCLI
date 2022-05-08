@@ -68,9 +68,19 @@ public class TodoHolder {
     }
 
     void print() {
-        for(TodoItem todo : todos) {
-            System.out.println(todo);
-        }
+        todos.forEach(System.out::println);
+    }
+
+    void printOnlyCheckedItems() {
+        todos.stream()
+                .filter(TodoItem::isChecked)
+                .forEach(System.out::println);
+    }
+
+    void printOnlyUncheckedItems() {
+        todos.stream()
+                .filter(todoItem -> !todoItem.isChecked())
+                .forEach(System.out::println);
     }
 
     public int getTodoSize() {
