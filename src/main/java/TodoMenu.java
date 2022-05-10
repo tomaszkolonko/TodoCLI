@@ -16,7 +16,7 @@ public class TodoMenu {
                     Press 'Q' to quit
                     """;
 
-        TodoHolder todoHolder = new TodoHolder();
+        final TodoOperations todoOperations = new TodoOperations();
 
         System.out.println("Welcome");
         System.out.println(menuOptions);
@@ -27,34 +27,14 @@ public class TodoMenu {
             String option = scanner.nextLine();
 
             switch (option.toUpperCase()) {
-                case "A" -> {
-                    System.out.println("Enter an item");
-                    TodoItem item = new TodoItem(scanner.nextLine());
-                    todoHolder.add(item);
-                }
-                case "D" -> {
-                    System.out.println("Enter an item to be deleted");
-                    TodoItem item = new TodoItem(scanner.nextLine());
-                    todoHolder.delete(item);
-                }
-                case "X" -> {
-                    System.out.println("Enter the item you want to check");
-                    TodoItem item = new TodoItem(scanner.nextLine());
-                    todoHolder.checkItem(item);
-                }
-                case "U" -> {
-                    System.out.println("Enter the item you want to uncheck");
-                    TodoItem item = new TodoItem(scanner.nextLine());
-                    todoHolder.uncheckItem(item);
-                }
-                case "E" -> {
-                    System.out.println("Enter the item you want to edit");
-                    TodoItem item = new TodoItem(scanner.nextLine());
-                    todoHolder.editItem(item);
-                }
-                case "L" -> todoHolder.print();
-                case "LX" -> todoHolder.printOnlyCheckedItems();
-                case "LU" -> todoHolder.printOnlyUncheckedItems();
+                case "A" -> todoOperations.addItem();
+                case "D" -> todoOperations.deleteItem();
+                case "X" -> todoOperations.checkItem();
+                case "U" -> todoOperations.uncheckItem();
+                case "E" -> todoOperations.editItem();
+                case "L" -> todoOperations.print();
+                case "LX" -> todoOperations.printCheckedItems();
+                case "LU" -> todoOperations.printUncheckedItems();
                 case "H" -> System.out.println(menuOptions);
                 case "Q" -> {
                     System.out.println("Goodbye");

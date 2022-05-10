@@ -48,15 +48,14 @@ public class TodoHolder {
         todos.stream()
                 .filter(item::equals)
                 .findAny()
-                .ifPresent(itemToCheck -> itemToCheck.check());
+                .ifPresent(TodoItem::check);
     }
 
     void uncheckItem(TodoItem item) {
-        for(TodoItem todoItem : todos) {
-            if(todoItem.equals(item)) {
-                todoItem.uncheck();
-            }
-        }
+        todos.stream()
+                .filter(item::equals)
+                .findFirst()
+                .ifPresent(TodoItem::uncheck);
     }
 
     void print() {
