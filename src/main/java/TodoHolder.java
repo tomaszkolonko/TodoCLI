@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TodoHolder {
 
@@ -23,11 +22,9 @@ public class TodoHolder {
         todos.clear();
     }
 
-    TodoItem retrieveItem(String todo) {
-        TodoItem item = new TodoItem(todo);
-
+    TodoItem retrieveItem(int id) {
         for(TodoItem todoItem : todos) {
-            if(todoItem.equals(item)) {
+            if(todoItem.is(id)) {
                 return todoItem;
             }
         }
@@ -35,20 +32,8 @@ public class TodoHolder {
         return null;
     }
 
-    void editItem(int id) {
-        for(int i = 0; i < todos.size(); i++) {
-            TodoItem todoItem = todos.get(i);
-            if(todoItem.is(id)) {
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Item was retrieved. What's the text?");
-                String text = scanner.nextLine();
-                System.out.println("is it a checked item? [yes|no]");
-                String isChecked = scanner.nextLine().toLowerCase();
-                TodoItem newItem = new TodoItem(text, isChecked.equals(("yes")));
-                newItem.setUniqueId(id);
-                todos.set(i, newItem);
-            }
-        }
+    void editItem(int index, TodoItem item) {
+        todos.set(index, item);
     }
 
     void checkItem(TodoItem item) {
@@ -83,5 +68,14 @@ public class TodoHolder {
 
     public int getTodoSize() {
         return todos.size();
+    }
+
+    public int getIndexOf(int id) {
+        for(int i = 0; i < todos.size(); i++) {
+            if(todos.get(i).is(id)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

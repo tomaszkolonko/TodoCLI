@@ -33,8 +33,25 @@ public class TodoOperations {
     public void editItem() {
         System.out.println("Enter the id of the item you want to edit");
         int id = Integer.parseInt(scanner.nextLine());
-        todoHolder.editItem(id);
+        int index = todoHolder.getIndexOf(id);
+        if(index == -1) {
+            System.out.println("item not found");
+            return;
+        }
+        TodoItem newItem = createNewItem(id);
+        todoHolder.editItem(index, newItem);
     }
+
+    private TodoItem createNewItem(int id) {
+        System.out.println("Item was retrieved. What's the text?");
+        String text = scanner.nextLine();
+        System.out.println("is it a checked item? [yes|no]");
+        String isChecked = scanner.nextLine().toLowerCase();
+        TodoItem newItem = new TodoItem(text, isChecked.equals("yes"));
+        newItem.setUniqueId(id);
+        return newItem;
+    }
+
 
     public void print() {
         todoHolder.print();

@@ -44,7 +44,7 @@ class TodoHolderTest {
 
     @Test
     void testRetrievingAnItem() {
-        TodoItem todoItem = todoHolder.retrieveItem("Buy some fruits");
+        TodoItem todoItem = todoHolder.retrieveItem(1);
         assertEquals(new TodoItem("Buy some fruits"), todoItem);
     }
 
@@ -52,11 +52,11 @@ class TodoHolderTest {
     void testCheckAndUncheckItems() {
         TodoItem itemOneEqual = new TodoItem("Call Peter");
         // use null object in order to omit nullPointerExceptions
-        assertEquals(false, todoHolder.retrieveItem("Call Peter").isChecked());
+        assertEquals(false, todoHolder.retrieveItem(0).isChecked());
         todoHolder.checkItem(itemOneEqual);
-        assertEquals(true, todoHolder.retrieveItem("Call Peter").isChecked());
+        assertEquals(true, todoHolder.retrieveItem(0).isChecked());
         todoHolder.uncheckItem(itemOneEqual);
-        assertEquals(false, todoHolder.retrieveItem("Call Peter").isChecked());
+        assertEquals(false, todoHolder.retrieveItem(0).isChecked());
     }
 
     @Test
