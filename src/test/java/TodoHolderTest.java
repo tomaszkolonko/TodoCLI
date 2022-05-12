@@ -30,10 +30,6 @@ class TodoHolderTest {
         assertEquals(2, todoHolder.getTodoSize());
         todoHolder.add(ITEM_THREE);
         assertEquals(3, todoHolder.getTodoSize());
-        todoHolder.add(null);
-        assertEquals(4, todoHolder.getTodoSize());
-
-
     }
 
     @Test
