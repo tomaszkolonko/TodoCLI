@@ -31,9 +31,9 @@ public class TodoOperations {
     }
 
     public void editItem() {
-        System.out.println("Enter the item you want to edit");
-        TodoItem item = new TodoItem(scanner.nextLine());
-        todoHolder.editItem(item);
+        System.out.println("Enter the id of the item you want to edit");
+        int id = Integer.parseInt(scanner.nextLine());
+        todoHolder.editItem(id);
     }
 
     public void print() {

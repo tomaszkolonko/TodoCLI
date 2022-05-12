@@ -5,6 +5,8 @@ public class TodoItem {
     private final String item;
     private boolean marked = false;
 
+    private int id = -1;
+
     public TodoItem(String item) {
         this.item = item;
     }
@@ -26,6 +28,18 @@ public class TodoItem {
         return this.marked;
     }
 
+    public void setUniqueId(TodoItem item) {
+        this.id = item.id + 1;
+    }
+
+    public void setUniqueId(int id) {
+        this.id = id;
+    }
+
+    public boolean is(int id) {
+        return this.id == id;
+    }
+
     @Override
     public boolean equals(Object o) {
         return this == o || o instanceof TodoItem && this.equals((TodoItem) o);
@@ -42,6 +56,6 @@ public class TodoItem {
 
     @Override
     public String toString() {
-        return "[" + (marked ? "x" : " ") + "]  " + item;
+        return id + ": [" + (marked ? "x" : " ") + "]  " + item;
     }
 }

@@ -7,6 +7,11 @@ public class TodoHolder {
     private final List<TodoItem> todos = new ArrayList<>();
 
     void add(TodoItem item) {
+        if(todos.isEmpty()) {
+            item.setUniqueId(0);
+        } else {
+            item.setUniqueId(todos.get(todos.size()-1));
+        }
         todos.add(item);
     }
 
@@ -30,16 +35,18 @@ public class TodoHolder {
         return null;
     }
 
-    void editItem(TodoItem item) {
+    void editItem(int id) {
         for(int i = 0; i < todos.size(); i++) {
             TodoItem todoItem = todos.get(i);
-            if(todoItem.equals(item)) {
+            if(todoItem.is(id)) {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Item was retrieved. What's the text?");
                 String text = scanner.nextLine();
                 System.out.println("is it a checked item? [yes|no]");
                 String isChecked = scanner.nextLine().toLowerCase();
-                todos.set(i, new TodoItem(text, isChecked.equals("yes")));
+                TodoItem newItem = new TodoItem(text, isChecked.equals(("yes")));
+                newItem.setUniqueId(id);
+                todos.set(i, newItem);
             }
         }
     }
