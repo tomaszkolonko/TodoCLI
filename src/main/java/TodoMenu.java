@@ -13,6 +13,7 @@ public class TodoMenu {
                     Press 'Lx' to list only checked items
                     Press 'Lu' to list only unchecked items
                     Press 'H' to list all the options
+                    Press 'Cx' to clear the checked items
                     Press 'Q' to quit
                     """;
 
@@ -36,6 +37,7 @@ public class TodoMenu {
                 case "LX" -> todoOperations.printCheckedItems();
                 case "LU" -> todoOperations.printUncheckedItems();
                 case "H" -> System.out.println(menuOptions);
+                case "CX" -> todoOperations.clearCheckedItems();
                 case "Q" -> {
                     System.out.println("Goodbye");
                     chosenOption = "Q";

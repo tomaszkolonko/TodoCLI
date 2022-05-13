@@ -52,12 +52,19 @@ public class TodoHolder {
 
     void print() {
         todos.forEach(System.out::println);
+        System.out.println("================");
+        String quantifier = todos.stream().filter(todoItem -> !todoItem.isChecked()).count() >= 3 ? "still" : "only";
+        System.out.println(quantifier + " " + todos.stream().filter(todoItem -> !todoItem.isChecked()).count() + " to go...\n");
     }
 
     void printOnlyCheckedItems() {
         todos.stream()
                 .filter(TodoItem::isChecked)
                 .forEach(System.out::println);
+    }
+
+    public void clearCheckedTodos() {
+        todos.removeIf(item -> item.isChecked());
     }
 
     void printOnlyUncheckedItems() {

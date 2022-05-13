@@ -54,6 +54,10 @@ public class TodoOperations {
         todoHolder.printOnlyUncheckedItems();
     }
 
+    public void clearCheckedItems() {
+        todoHolder.clearCheckedTodos();
+    }
+
     private int getIdOfItem() {
         int id = -1;
         try {
@@ -73,5 +77,4 @@ public class TodoOperations {
         newItem.setUniqueId(id);
         return newItem;
     }
-
 }
