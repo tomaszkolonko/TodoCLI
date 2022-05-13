@@ -6,12 +6,12 @@ public class TodoItem {
     private boolean marked = false;
     private final int id;
 
-    public TodoItem(String item, int id) {
+    public TodoItem(final String item, final int id) {
         this.item = item;
         this.id = id;
     }
 
-    public TodoItem(String item, boolean marked, int id) {
+    public TodoItem(final String item, final boolean marked, final int id) {
         this(item, id);
         this.marked = marked;
     }
@@ -32,16 +32,16 @@ public class TodoItem {
         return id;
     }
 
-    public boolean is(int id) {
+    public boolean is(final int id) {
         return this.id == id;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         return this == o || o instanceof TodoItem && this.equals((TodoItem) o);
     }
 
-    private boolean equals(TodoItem other) {
+    private boolean equals(final TodoItem other) {
         return this.item.equals(other.item);
     }
 

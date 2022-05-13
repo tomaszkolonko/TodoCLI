@@ -7,8 +7,7 @@ public class TodoOperations {
 
     void addItem() {
         System.out.println("Enter an item");
-        final int nextID = todoHolder.getNextID();
-        TodoItem item = new TodoItem(scanner.nextLine(), nextID);
+        TodoItem item = new TodoItem(scanner.nextLine(), todoHolder.getNextID());
         todoHolder.add(item);
     }
 
