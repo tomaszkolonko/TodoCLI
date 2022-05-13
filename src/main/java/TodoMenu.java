@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class TodoMenu {
 
-    public void start() {
-        final String menuOptions = """
+    final TodoOperations todoOperations = new TodoOperations();
+    final String menuOptions = """
                     Press 'A' to add todo items
                     Press 'D' to delete an item
                     Press 'X' to check an item
@@ -17,35 +17,43 @@ public class TodoMenu {
                     Press 'Q' to quit
                     """;
 
-        final TodoOperations todoOperations = new TodoOperations();
-
+    public void start() {
         System.out.println("Welcome");
         System.out.println(menuOptions);
 
-        // methodolize some piece below?
+        selectOperation();
+    }
+
+    private void selectOperation() {
         String chosenOption = "";
         while (!chosenOption.equals("Q")) {
             final Scanner scanner = new Scanner(System.in);
             final String option = scanner.nextLine();
 
-            switch (option.toUpperCase()) {
-                case "A" -> todoOperations.addItem();
-                case "D" -> todoOperations.deleteItem();
-                case "X" -> todoOperations.checkItem();
-                case "U" -> todoOperations.uncheckItem();
-                case "E" -> todoOperations.editItem();
-                case "L" -> todoOperations.print();
-                case "LX" -> todoOperations.printCheckedItems();
-                case "LU" -> todoOperations.printUncheckedItems();
-                case "H" -> System.out.println(menuOptions);
-                case "CX" -> todoOperations.clearCheckedItems();
-                case "Q" -> {
-                    System.out.println("Goodbye");
-                    chosenOption = "Q";
-                }
-                default -> System.out.println("didn't get that... Press 'H' to list all the options");
-            }
+            chosenOption = doOperation(todoOperations, chosenOption, option);
+
             System.out.println("What's next?");
         }
+    }
+
+    private String doOperation(TodoOperations todoOperations, String chosenOption, String option) {
+        switch (option.toUpperCase()) {
+            case "A" -> todoOperations.addItem();
+            case "D" -> todoOperations.deleteItem();
+            case "X" -> todoOperations.checkItem();
+            case "U" -> todoOperations.uncheckItem();
+            case "E" -> todoOperations.editItem();
+            case "L" -> todoOperations.print();
+            case "LX" -> todoOperations.printCheckedItems();
+            case "LU" -> todoOperations.printUncheckedItems();
+            case "H" -> System.out.println(menuOptions);
+            case "CX" -> todoOperations.clearCheckedItems();
+            case "Q" -> {
+                System.out.println("Goodbye");
+                chosenOption = "Q";
+            }
+            default -> System.out.println("didn't get that... Press 'H' to list all the options");
+        }
+        return chosenOption;
     }
 }
