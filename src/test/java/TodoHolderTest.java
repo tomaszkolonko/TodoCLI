@@ -8,7 +8,6 @@ class TodoHolderTest {
 
     private final static TodoItem ITEM_ONE = new TodoItem("Call Peter");
     private final static TodoItem ITEM_TWO = new TodoItem("Buy some fruits");
-    private final static TodoItem ITEM_TWO_EQUAL_CONTENT = new TodoItem("Buy some fruits");
     private final static TodoItem ITEM_THREE = new TodoItem("Pay the bills");
 
 
@@ -34,10 +33,10 @@ class TodoHolderTest {
 
     @Test
     void testRemovingItemsWithSameReference() {
-        todoHolder.delete(ITEM_ONE);
+        todoHolder.delete(0);
         assertEquals(1, todoHolder.getTodoSize());
 
-        todoHolder.delete(ITEM_TWO_EQUAL_CONTENT);
+        todoHolder.delete(1);
         assertEquals(0, todoHolder.getTodoSize());
 
     }

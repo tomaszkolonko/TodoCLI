@@ -13,13 +13,13 @@ public class TodoOperations {
     }
 
     public void deleteItem() {
-        System.out.println("Enter an item to be deleted");
-        TodoItem item = new TodoItem(scanner.nextLine());
-        todoHolder.delete(item);
+        System.out.println("Enter the id of the item to be deleted");
+        int id = getIdOfItem();
+        todoHolder.delete(id);
     }
 
     public void checkItem() {
-        System.out.println("Enter the item you want to check");
+        System.out.println("Enter the id of the item you want to check");
         int id = getIdOfItem();
         todoHolder.checkItem(id);
     }
@@ -40,7 +40,18 @@ public class TodoOperations {
         }
         TodoItem newItem = createNewItem(id);
         todoHolder.editItem(index, newItem);
+    }
 
+    public void print() {
+        todoHolder.print();
+    }
+
+    public void printCheckedItems() {
+        todoHolder.printOnlyCheckedItems();
+    }
+
+    public void printUncheckedItems() {
+        todoHolder.printOnlyUncheckedItems();
     }
 
     private int getIdOfItem() {
@@ -63,16 +74,4 @@ public class TodoOperations {
         return newItem;
     }
 
-
-    public void print() {
-        todoHolder.print();
-    }
-
-    public void printCheckedItems() {
-        todoHolder.printOnlyCheckedItems();
-    }
-
-    public void printUncheckedItems() {
-        todoHolder.printOnlyUncheckedItems();
-    }
 }

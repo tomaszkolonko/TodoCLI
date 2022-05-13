@@ -6,16 +6,16 @@ public class TodoHolder {
     private final List<TodoItem> todos = new ArrayList<>();
 
     void add(TodoItem item) {
-        if(todos.isEmpty()) {
+        if (todos.isEmpty()) {
             item.setUniqueId(0);
         } else {
-            item.setUniqueId(todos.get(todos.size()-1));
+            item.setUniqueId(todos.get(todos.size() - 1));
         }
         todos.add(item);
     }
 
-    void delete(TodoItem item) {
-        todos.remove(item);
+    void delete(int id) {
+        todos.removeIf(item -> item.is(id));
     }
 
     void clearTodos() {
@@ -23,8 +23,8 @@ public class TodoHolder {
     }
 
     TodoItem retrieveItem(int id) {
-        for(TodoItem todoItem : todos) {
-            if(todoItem.is(id)) {
+        for (TodoItem todoItem : todos) {
+            if (todoItem.is(id)) {
                 return todoItem;
             }
         }
@@ -71,8 +71,8 @@ public class TodoHolder {
     }
 
     public int getIndexOf(int id) {
-        for(int i = 0; i < todos.size(); i++) {
-            if(todos.get(i).is(id)) {
+        for (int i = 0; i < todos.size(); i++) {
+            if (todos.get(i).is(id)) {
                 return i;
             }
         }
