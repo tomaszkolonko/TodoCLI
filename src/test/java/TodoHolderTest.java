@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TodoHolderTest {
 
-    private final static TodoItem ITEM_ONE = new TodoItem("Call Peter");
-    private final static TodoItem ITEM_TWO = new TodoItem("Buy some fruits");
-    private final static TodoItem ITEM_THREE = new TodoItem("Pay the bills");
+    private final static TodoItem ITEM_ONE = new TodoItem("Call Peter", 0);
+    private final static TodoItem ITEM_TWO = new TodoItem("Buy some fruits", 1);
+    private final static TodoItem ITEM_THREE = new TodoItem("Pay the bills", 2);
 
 
     private final static TodoHolder todoHolder = new TodoHolder();
@@ -37,7 +37,7 @@ class TodoHolderTest {
     @Test
     void testRetrievingAnItem() {
         TodoItem todoItem = todoHolder.retrieveItem(1);
-        assertEquals(new TodoItem("Buy some fruits"), todoItem);
+        assertEquals(new TodoItem("Buy some fruits",1), todoItem);
     }
 
     @Test
@@ -58,10 +58,10 @@ class TodoHolderTest {
 
     @Test
     void testEditItem() {
-        TodoItem newItem = new TodoItem("Call Janet");
+        TodoItem newItem = new TodoItem("Call Janet", 1);
         newItem.check();
-        newItem.setUniqueId(1);
-        todoHolder.editItem(0, newItem);
+        // newItem.setUniqueId(1);
+        todoHolder.replaceItem(0, newItem);
 
         TodoItem retrievedItem = todoHolder.retrieveItem(1);
         assertEquals(newItem, retrievedItem);

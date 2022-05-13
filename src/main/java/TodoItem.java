@@ -4,15 +4,15 @@ public class TodoItem {
 
     private final String item;
     private boolean marked = false;
+    private final int id;
 
-    private int id = -1;
-
-    public TodoItem(String item) {
+    public TodoItem(String item, int id) {
         this.item = item;
+        this.id = id;
     }
 
-    public TodoItem(String item, boolean marked) {
-        this(item);
+    public TodoItem(String item, boolean marked, int id) {
+        this(item, id);
         this.marked = marked;
     }
 
@@ -25,15 +25,11 @@ public class TodoItem {
     }
 
     public boolean isChecked() {
-        return this.marked;
+        return marked;
     }
 
-    public void setUniqueId(TodoItem item) {
-        this.id = item.id + 1;
-    }
-
-    public void setUniqueId(int id) {
-        this.id = id;
+    public int getUniqueId() {
+        return id;
     }
 
     public boolean is(int id) {

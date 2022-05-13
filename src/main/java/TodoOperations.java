@@ -2,35 +2,35 @@ import java.util.Scanner;
 
 public class TodoOperations {
 
-    TodoHolder todoHolder = new TodoHolder();
-    private Scanner scanner = new Scanner(System.in);
+    final TodoHolder todoHolder = new TodoHolder();
+    private final Scanner scanner = new Scanner(System.in);
 
-
-    public void addItem() {
+    void addItem() {
         System.out.println("Enter an item");
-        TodoItem item = new TodoItem(scanner.nextLine());
+        final int nextID = todoHolder.getNextID();
+        TodoItem item = new TodoItem(scanner.nextLine(), nextID);
         todoHolder.add(item);
     }
 
-    public void deleteItem() {
+    void deleteItem() {
         System.out.println("Enter the id of the item to be deleted");
-        int id = getIdOfItem();
+        final int id = getIdOfItem();
         todoHolder.delete(id);
     }
 
-    public void checkItem() {
+    void checkItem() {
         System.out.println("Enter the id of the item you want to check");
         int id = getIdOfItem();
         todoHolder.checkItem(id);
     }
 
-    public void uncheckItem() {
+    void uncheckItem() {
         System.out.println("Enter the id of the item you want to uncheck");
         int id = getIdOfItem();
         todoHolder.uncheckItem(id);
     }
 
-    public void editItem() {
+    void editItem() {
         System.out.println("Enter the id of the item you want to edit");
         int id = getIdOfItem();
         int index = todoHolder.getIndexOf(id);
@@ -39,33 +39,33 @@ public class TodoOperations {
             return;
         }
         TodoItem newItem = createNewItem(id);
-        todoHolder.editItem(index, newItem);
+        todoHolder.replaceItem(index, newItem);
     }
 
-    public void print() {
+    void print() {
         todoHolder.print();
     }
 
-    public void printCheckedItems() {
+    void printCheckedItems() {
         todoHolder.printOnlyCheckedItems();
     }
 
-    public void printUncheckedItems() {
+    void printUncheckedItems() {
         todoHolder.printOnlyUncheckedItems();
     }
 
-    public void clearCheckedItems() {
+    void clearCheckedItems() {
         todoHolder.clearCheckedTodos();
     }
 
+    // todo: can refactor so that this validates that the ID is associated with a todo, as well
     private int getIdOfItem() {
-        int id = -1;
         try {
-            id = Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("That was not the items id, try again");
+            return getIdOfItem();
         }
-        return id;
     }
 
     private TodoItem createNewItem(int id) {
@@ -73,8 +73,6 @@ public class TodoOperations {
         String text = scanner.nextLine();
         System.out.println("is it a checked item? [yes|no]");
         String isChecked = scanner.nextLine().toLowerCase();
-        TodoItem newItem = new TodoItem(text, isChecked.equals("yes"));
-        newItem.setUniqueId(id);
-        return newItem;
+        return new TodoItem(text, isChecked.equals("yes"), id);
     }
 }

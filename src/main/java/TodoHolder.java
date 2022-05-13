@@ -5,12 +5,15 @@ public class TodoHolder {
 
     private final List<TodoItem> todos = new ArrayList<>();
 
+    int getNextID() {
+        return todos
+                .stream()
+                .mapToInt(TodoItem::getUniqueId)
+                .max()
+                .orElse(-1) + 1;
+    }
+
     void add(TodoItem item) {
-        if (todos.isEmpty()) {
-            item.setUniqueId(0);
-        } else {
-            item.setUniqueId(todos.get(todos.size() - 1));
-        }
         todos.add(item);
     }
 
@@ -28,11 +31,12 @@ public class TodoHolder {
                 return todoItem;
             }
         }
-        // work with null objects
+        // TODO refactor to use optional
+        // work with "null object pattern"
         return null;
     }
 
-    void editItem(int index, TodoItem item) {
+    void replaceItem(int index, TodoItem item) {
         todos.set(index, item);
     }
 
@@ -63,8 +67,8 @@ public class TodoHolder {
                 .forEach(System.out::println);
     }
 
-    public void clearCheckedTodos() {
-        todos.removeIf(item -> item.isChecked());
+    void clearCheckedTodos() {
+        todos.removeIf(TodoItem::isChecked);
     }
 
     void printOnlyUncheckedItems() {

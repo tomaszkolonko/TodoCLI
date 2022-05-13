@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class TodoMenu {
 
     public void start() {
-        String menuOptions = """
+        final String menuOptions = """
                     Press 'A' to add todo items
                     Press 'D' to delete an item
                     Press 'X' to check an item
@@ -22,10 +22,11 @@ public class TodoMenu {
         System.out.println("Welcome");
         System.out.println(menuOptions);
 
+        // methodolize some piece below?
         String chosenOption = "";
         while (!chosenOption.equals("Q")) {
-            Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
+            final Scanner scanner = new Scanner(System.in);
+            final String option = scanner.nextLine();
 
             switch (option.toUpperCase()) {
                 case "A" -> todoOperations.addItem();
@@ -45,7 +46,6 @@ public class TodoMenu {
                 default -> System.out.println("didn't get that... Press 'H' to list all the options");
             }
             System.out.println("What's next?");
-
         }
     }
 }
