@@ -20,26 +20,37 @@ public class TodoOperations {
 
     public void checkItem() {
         System.out.println("Enter the item you want to check");
-        TodoItem item = new TodoItem(scanner.nextLine());
-        todoHolder.checkItem(item);
+        int id = getIdOfItem();
+        todoHolder.checkItem(id);
     }
 
     public void uncheckItem() {
-        System.out.println("Enter the item you want to uncheck");
-        TodoItem item = new TodoItem(scanner.nextLine());
-        todoHolder.uncheckItem(item);
+        System.out.println("Enter the id of the item you want to uncheck");
+        int id = getIdOfItem();
+        todoHolder.uncheckItem(id);
     }
 
     public void editItem() {
         System.out.println("Enter the id of the item you want to edit");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id = getIdOfItem();
         int index = todoHolder.getIndexOf(id);
-        if(index == -1) {
+        if (index == -1) {
             System.out.println("item not found");
             return;
         }
         TodoItem newItem = createNewItem(id);
         todoHolder.editItem(index, newItem);
+
+    }
+
+    private int getIdOfItem() {
+        int id = -1;
+        try {
+            id = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("That was not the items id, try again");
+        }
+        return id;
     }
 
     private TodoItem createNewItem(int id) {

@@ -36,16 +36,16 @@ public class TodoHolder {
         todos.set(index, item);
     }
 
-    void checkItem(TodoItem item) {
+    void checkItem(int id) {
         todos.stream()
-                .filter(item::equals)
+                .filter(item -> item.is(id))
                 .findAny()
                 .ifPresent(TodoItem::check);
     }
 
-    void uncheckItem(TodoItem item) {
+    void uncheckItem(int id) {
         todos.stream()
-                .filter(item::equals)
+                .filter(item -> item.is(id))
                 .findFirst()
                 .ifPresent(TodoItem::uncheck);
     }
