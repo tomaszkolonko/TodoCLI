@@ -15,6 +15,9 @@ class TodoHolderTest {
 
     @BeforeEach
     void init() {
+        ITEM_ONE.uncheck();
+        ITEM_TWO.uncheck();
+        ITEM_THREE.uncheck();
         todoHolder.add(ITEM_ONE);
         todoHolder.add(ITEM_TWO);
     }
@@ -32,25 +35,20 @@ class TodoHolderTest {
     }
 
     @Test
-    void testRemovingItemsWithSameReference() {
-        todoHolder.delete(0);
-        assertEquals(1, todoHolder.getTodoSize());
-
-        todoHolder.delete(1);
-        assertEquals(0, todoHolder.getTodoSize());
-
-    }
-
-    @Test
     void testRetrievingAnItem() {
         TodoItem todoItem = todoHolder.retrieveItem(1);
         assertEquals(new TodoItem("Buy some fruits"), todoItem);
     }
 
     @Test
+    void testDeletingItems() {
+        assertEquals(2, todoHolder.getTodoSize());
+        todoHolder.delete(1);
+        assertEquals(1, todoHolder.getTodoSize());
+    }
+
+    @Test
     void testCheckAndUncheckItems() {
-        TodoItem itemOneEqual = new TodoItem("Call Peter");
-        // use null object in order to omit nullPointerExceptions
         assertEquals(false, todoHolder.retrieveItem(0).isChecked());
         todoHolder.checkItem(0);
         assertEquals(true, todoHolder.retrieveItem(0).isChecked());
@@ -59,8 +57,28 @@ class TodoHolderTest {
     }
 
     @Test
-    void editItems() {
-        // difficult to test (!!!)
+    void testEditItem() {
+        TodoItem newItem = new TodoItem("Call Janet");
+        newItem.check();
+        newItem.setUniqueId(1);
+        todoHolder.editItem(0, newItem);
+
+        TodoItem retrievedItem = todoHolder.retrieveItem(1);
+        assertEquals(newItem, retrievedItem);
+    }
+
+    @Test
+    void testClearingCheckedItems() {
+        todoHolder.add(ITEM_THREE);
+        assertEquals(3, todoHolder.getTodoSize());
+        todoHolder.checkItem(1);
+        assertEquals(3, todoHolder.getTodoSize());
+        todoHolder.clearCheckedTodos();
+        assertEquals(2, todoHolder.getTodoSize());
+        todoHolder.checkItem(0);
+        todoHolder.checkItem(2);
+        todoHolder.clearCheckedTodos();
+        assertEquals(0, todoHolder.getTodoSize());
     }
 
 
