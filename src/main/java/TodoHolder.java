@@ -9,7 +9,7 @@ public class TodoHolder {
     int getNextID() {
         return todos
                 .stream()
-                .mapToInt(TodoItem::getUniqueId)
+                .mapToInt(TodoItem::getId)
                 .max()
                 .orElse(NEGATIVE_OFFSET) + 1;
     }

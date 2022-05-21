@@ -28,7 +28,7 @@ public class TodoItem {
         return marked;
     }
 
-    public int getUniqueId() {
+    public int getId() {
         return id;
     }
 
@@ -38,6 +38,7 @@ public class TodoItem {
 
     @Override
     public boolean equals(final Object o) {
+
         return this == o || o instanceof TodoItem && this.equals((TodoItem) o);
     }
 
